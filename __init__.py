@@ -10,6 +10,7 @@ mpl.use('Agg')
 import matplotlib.pyplot as plt
 from math import cos, asin, sqrt
 
+
 def distance(lat1, lon1, lat2, lon2):
     p = 0.017453292519943295
     a = 0.5 - cos((lat2 - lat1) * p)/2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2
@@ -20,7 +21,10 @@ gmaps_key = googlemaps.Client(key = 'AIzaSyDpTVDSs4skfp01KMgW-t6R-8v-8xVviX8')
 
 filename = 'COBRA-2009-2017.csv'
 
-
+df = pd.read_csv(filename, dtype='str', error_bad_lines=False,)
+df = df.drop_duplicates()
+df[['Latitude','Longitude']] = df[['Latitude','Longitude']].apply(pd.to_numeric, errors='ignore')
+dic = {}
 
 
 app = Flask(__name__)
@@ -33,10 +37,6 @@ def main():
 
 @app.route('/searched',methods=['POST'])
 def searched():
-    df = pd.read_csv(filename, dtype='str', error_bad_lines=False,)
-    df = df.drop_duplicates()
-    df[['Latitude','Longitude']] = df[['Latitude','Longitude']].apply(pd.to_numeric, errors='ignore')
-    dic = {}
     address = request.form['address']
     parts = address.split(',')
     if (not " Atlanta" in  parts) or (not " GA" in parts):
@@ -81,9 +81,6 @@ def searched():
 
 @app.route('/graphs', methods=['POST'])
 def graphs():
-    df = pd.read_csv(filename, dtype='str', error_bad_lines=False,)
-    df = df.drop_duplicates()
-    df[['Latitude','Longitude']] = df[['Latitude','Longitude']].apply(pd.to_numeric, errors='ignore')
     address = request.form['input1']
     parts = address.split(',')
     crime = request.form['crime']
