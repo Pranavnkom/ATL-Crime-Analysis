@@ -97,7 +97,6 @@ ptyprocess==0.5.2
 py==1.5.3
 pyasn1==0.4.4
 pyasn1-modules==0.2.2
-PyAudio==0.2.7
 pycodestyle==2.4.0
 pycosat==0.6.3
 pycparser==2.18
