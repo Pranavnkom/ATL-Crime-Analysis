@@ -6,7 +6,7 @@ import googlemaps
 import matplotlib as mpl
 import io
 import base64
-mpl.use('TkAgg')
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 from math import cos, asin, sqrt
 
