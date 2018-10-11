@@ -88,7 +88,6 @@ pipenv==2018.10.9
 pkginfo==1.4.2
 pluggy==0.6.0
 ply==3.8
-Polygon2==2.0.6
 prompt-toolkit==1.0.15
 proto-google-cloud-datastore-v1==0.90.4
 proto-google-cloud-pubsub-v1==0.15.4
