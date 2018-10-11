@@ -2,3 +2,4 @@ flask==0.12.3.
 numpy==1.15.2
 pandas==0.23.4
 GoogleMaps==2.4
+matplotlib==1.1.0
