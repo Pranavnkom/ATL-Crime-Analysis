@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <style>
+    [type=submit] {
+      color: white;
+      background-color: black;
+      border: none;
+      padding: 10px 23px;
+      text-decoration: none;
+      margin: 6px 2px;
+      cursor: pointer;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div>
+    <img style="display:block; margin-left: auto; margin-right: auto; width: 50%;" src="data:image/png;base64,{{content['plot_url']}}">
+  </div>
+    <form action='/' method=post>
+      <input style="margin-left: 50%; font-family: 'Roboto Mono';" type="submit" name='back' value="Go Back">
+    </form>
+  </body>
+</html>
