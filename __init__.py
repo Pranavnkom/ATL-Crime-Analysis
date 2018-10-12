@@ -19,12 +19,7 @@ def distance(lat1, lon1, lat2, lon2):
 gmaps_key = googlemaps.Client(key = 'AIzaSyDpTVDSs4skfp01KMgW-t6R-8v-8xVviX8')
 
 
-filename = 'COBRA-2009-2017.csv'
 
-df = pd.read_csv(filename, dtype='str', error_bad_lines=False,)
-df = df.drop_duplicates()
-df[['Latitude','Longitude']] = df[['Latitude','Longitude']].apply(pd.to_numeric, errors='ignore')
-dic = {}
 
 
 app = Flask(__name__)
@@ -37,6 +32,12 @@ def main():
 
 @app.route('/searched',methods=['POST'])
 def searched():
+    filename = 'COBRA-2009-2017.csv'
+
+    df = pd.read_csv(filename, dtype='str', error_bad_lines=False,)
+    df = df.drop_duplicates()
+    df[['Latitude','Longitude']] = df[['Latitude','Longitude']].apply(pd.to_numeric, errors='ignore')
+    dic = {}
     address = request.form['address']
     parts = address.split(',')
     if (not " Atlanta" in  parts) or (not " GA" in parts):
@@ -81,6 +82,12 @@ def searched():
 
 @app.route('/graphs', methods=['POST'])
 def graphs():
+    filename = 'COBRA-2009-2017.csv'
+
+    df = pd.read_csv(filename, dtype='str', error_bad_lines=False,)
+    df = df.drop_duplicates()
+    df[['Latitude','Longitude']] = df[['Latitude','Longitude']].apply(pd.to_numeric, errors='ignore')
+
     address = request.form['input1']
     parts = address.split(',')
     crime = request.form['crime']
@@ -122,6 +129,4 @@ def graphs():
     plot_url = base64.b64encode(img.getvalue()).decode()
     content = {'plot_url': plot_url}
 
-
-    #return '<img src="data:image/png;base64,{}">'.format(plot_url)
     return render_template("graphs.html",content=content)
